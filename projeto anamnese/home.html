@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Anamnese - MASSOTERAPIA </title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        #diabetes-info {
+            background-color: #e6f7ff;
+            padding: 15px;
+            margin-top: 10px;
+            border: 1px solid #b3e0ff;
+            border-radius: 8px;
+        }
+
+        #diabetes-info label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        #diabetes-info select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h3>MASSOTERAPIA - Ficha de Anamnese</h3>
+
+        <hr>
+
+        <form>
+            <div class="dados">
+                <h3>DADOS PESSOAIS:</h3>
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required>
+
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" id="dataNascimento" name="dataNascimento" required>
+
+                <label for="rg">RG:</label>
+                <input type="text" id="rg" name="rg" required>
+
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" required>
+
+                <label for="ocupacao">Ocupação:</label>
+                <input type="text" id="ocupacao" name="ocupacao" required>
+
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" name="cep" required onblur="buscarEndereco()">
+
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" name="endereco" required>
+
+                <label for="bairro">Bairro:</label>
+                <input type="text" id="bairro" name="bairro" required>
+
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" required>
+
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado" required>
+
+                <label for="number">Número da Casa:</label>
+                <input type="text" id="numCasa" name="numCasa" required>
+
+                <label>Sexo:</label>
+                <div class="sexo">
+                    <label><input type="radio" name="sexo" value="feminino" required> Feminino</label>
+                    <label><input type="radio" name="sexo" value="masculino"> Masculino</label>
+                    <label><input type="radio" name="sexo" value="naoInformar"> Prefiro não informar</label>
+                </div>
+
+                <script>
+                    function buscarEndereco() {
+                        let cep = document.getElementById('cep').value.replace(/\D/g, '');
+
+                        if (cep !== "") {
+                            let validaCep = /^[0-9]{8}$/;
+
+                            if (validaCep.test(cep)) {
+                                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (!("erro" in data)) {
+                                            document.getElementById('endereco').value = data.logradouro;
+                                            document.getElementById('bairro').value = data.bairro;
+                                            document.getElementById('cidade').value = data.localidade;
+                                            document.getElementById('estado').value = data.uf;
+                                        } else {
+                                            alert("CEP não encontrado.");
+                                        }
+                                    })
+                                    .catch(() => {
+                                        alert("Erro ao buscar o CEP.");
+                                    });
+                            } else {
+                                alert("Formato de CEP inválido.");
+                            }
+                        }
+                    }
+                </script>
+
+            <hr> 
+
+            </div>
+            <h3>QUEIXA PRINCIPAL:</h3>
+            <div class="queixa">
+                <textarea id="queixa" name="queixa" rows="4"
+                    placeholder="Descreva aqui o motivo pelo qual procurou este serviço..." required></textarea>
+            </div>
+            
+            <hr>
+
+            <h3>INFORMAÇÕES PESSOAIS:</h3>
+            <div class="pergunta">
+                <p>É Fumante?</p>
+                <label><input type="radio" name="fumante" value="sim"> Sim</label>
+                <label><input type="radio" name="fumante" value="nao"> Não</label>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui Distúrbio Circulatório?</p>
+                <label><input type="radio" name="disturbioCirculatorio" value="sim"> Sim</label>
+                <label><input type="radio" name="disturbioCirculatorio" value="nao"> Não</label>
+            </div>
+
+            <div class="pergunta">
+                <p>É epilético?</p>
+                <label><input type="radio" name="epiletico" value="sim"> Sim</label>
+                <label><input type="radio" name="epiletico" value="nao"> Não</label>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui ciclo mestrual regular?</p>
+                <label><input type="radio" name="ciclo" value="sim"> Sim</label>
+                <label><input type="radio" name="ciclo" value="nao"> Não</label>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui um funcionamento intestinal regular?</p>
+                <label><input type="radio" name="funcionamentoIntestino" value="sim"> Sim</label>
+                <label><input type="radio" name="funcionamentoIntestino" value="nao"> Não</label>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui alterações cardíacas?</p>
+                <label><input type="radio" name="alteracoesCardiacas" value="sim"> Sim</label>
+                <label><input type="radio" name="alteracoesCardiacas" value="nao"> Não</label>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui algum distúrbio hormonal?</p>
+                <label><input type="radio" name="disturbioHormonal" value="sim"> Sim</label>
+                <label><input type="radio" name="disturbioHormonal" value="nao"> Não</label>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui Hipo/Hipertensão Arterial?</p>
+                <label><input type="radio" name="pressao" value="sim"> Sim</label>
+                <label><input type="radio" name="pressao" value="nao"> Não</label>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui algum distúrbio Renal?</p>
+                <label><input type="radio" name="disturbioRenal" value="sim"> Sim</label>
+                <label><input type="radio" name="disturbioRenal" value="nao"> Não</label>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui Varizes ou Lesões?</p>
+                <label><input type="radio" name="varizesLesoes" value="sim"> Sim</label>
+                <label><input type="radio" name="varizesLesoes" value="nao"> Não</label>
+            </div>
+
+            <div class="pergunta">
+                <p>Você é diabético?</p>
+                <label><input type="radio" name="diabetico" value="sim" onchange="
+        document.getElementById('diabetes-info').style.display = 'block';
+      "> Sim</label>
+                <label><input type="radio" name="diabetico" value="nao" onchange="
+        document.getElementById('diabetes-info').style.display = 'none';
+      "> Não</label>
+            </div>
+
+            <div id="diabetes-info" style="display: none;">
+                <label for="tipoDiabetes">Tipo de diabetes:</label>
+                <select id="tipoDiabetes" name="tipoDiabetes">
+                    <option value="">Selecione</option>
+                    <option value="tipo1">Tipo 1</option>
+                    <option value="tipo2">Tipo 2</option>
+                    <option value="gestacional">Gestacional</option>
+                    <option value="outro">Outro</option>
+                </select>
+
+                <label for="controlada">Está controlada?</label>
+                <select id="controlada" name="controlada">
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+
+            <div class="pergunta">
+                <p>Você está gestante?</p>
+                <label><input type="radio" name="gestante" value="sim" onchange="
+        document.getElementById('gestante-info').style.display = 'block';
+      "> Sim</label>
+                <label><input type="radio" name="gestante" value="nao" onchange="
+        document.getElementById('gestante-info').style.display = 'none';
+      "> Não</label>
+            </div>
+
+            <div id="gestante-info" style="display: none;">
+                <label for="semanas">Quantas semanas?</label>
+                <input type="number" id="semanas" name="semanas" min="1" max="42">
+            </div>
+
+            <div class="pergunta">
+                <p>Está em tratamento médico?</p>
+                <label><input type="radio" name="tratamentoMedico" value="sim" onchange="
+        document.getElementById('tratamento-info').style.display = 'block';
+      "> Sim</label>
+                <label><input type="radio" name="tratamentoMedico" value="nao" onchange="
+        document.getElementById('tratamento-info').style.display = 'none';
+      "> Não</label>
+            </div>
+
+            <div id="tratamento-info" style="display: none;">
+                <label for="justificativa">Por favor, detalhe:</label>
+                <textarea id="justificativa" name="justificativa" rows="4"></textarea>
+            </div>
+
+            <div class="pergunta">
+                <p>Fez alguma cirurgia recente?</p>
+                <label><input type="radio" name="cirurgia" value="sim"
+                        onchange="document.getElementById('cirurgia-info').style.display = 'block';"> Sim</label>
+                <label><input type="radio" name="cirurgia" value="nao"
+                        onchange="document.getElementById('cirurgia-info').style.display = 'none';"> Não</label>
+            </div>
+            <div id="cirurgia-info" class="info" style="display: none;">
+                <label for="cirurgiaDetalhes">Por favor, detalhe:</label>
+                <textarea id="cirurgiaDetalhes" name="cirurgiaDetalhes" rows="4"></textarea>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui problemas de pele?</p>
+                <label><input type="radio" name="pele" value="sim"
+                        onchange="document.getElementById('pele-info').style.display = 'block';"> Sim</label>
+                <label><input type="radio" name="pele" value="nao"
+                        onchange="document.getElementById('pele-info').style.display = 'none';"> Não</label>
+            </div>
+            <div id="pele-info" class="info" style="display: none;">
+                <label for="peleDetalhes">Por favor, detalhe:</label>
+                <textarea id="peleDetalhes" name="peleDetalhes" rows="4"></textarea>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui prótese corporal/facial?</p>
+                <label><input type="radio" name="protese" value="sim"
+                        onchange="document.getElementById('protese-info').style.display = 'block';"> Sim</label>
+                <label><input type="radio" name="protese" value="nao"
+                        onchange="document.getElementById('protese-info').style.display = 'none';"> Não</label>
+            </div>
+            <div id="protese-info" class="info" style="display: none;">
+                <label for="proteseDetalhes">Por favor, detalhe:</label>
+                <textarea id="proteseDetalhes" name="proteseDetalhes" rows="4"></textarea>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui alguma alergia?</p>
+                <label><input type="radio" name="alergia" value="sim"
+                        onchange="document.getElementById('alergia-info').style.display = 'block';"> Sim</label>
+                <label><input type="radio" name="alergia" value="nao"
+                        onchange="document.getElementById('alergia-info').style.display = 'none';"> Não</label>
+            </div>
+            <div id="alergia-info" class="info" style="display: none;">
+                <label for="alergiaDetalhes">Por favor, detalhe:</label>
+                <textarea id="alergiaDetalhes" name="alergiaDetalhes" rows="4"></textarea>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui algum tumor ou lesão pré-cancerosa?</p>
+                <label><input type="radio" name="tumor" value="sim"
+                        onchange="document.getElementById('tumor-info').style.display = 'block';"> Sim</label>
+                <label><input type="radio" name="tumor" value="nao"
+                        onchange="document.getElementById('tumor-info').style.display = 'none';"> Não</label>
+            </div>
+            <div id="tumor-info" class="info" style="display: none;">
+                <label for="tumorDetalhes">Por favor, detalhe:</label>
+                <textarea id="tumorDetalhes" name="tumorDetalhes" rows="4"></textarea>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui problemas ortopédicos?</p>
+                <label><input type="radio" name="ortopedico" value="sim"
+                        onchange="document.getElementById('ortopedico-info').style.display = 'block';"> Sim</label>
+                <label><input type="radio" name="ortopedico" value="nao"
+                        onchange="document.getElementById('ortopedico-info').style.display = 'none';"> Não</label>
+            </div>
+            <div id="ortopedico-info" class="info" style="display: none;">
+                <label for="ortopedicoDetalhes">Por favor, detalhe:</label>
+                <textarea id="ortopedicoDetalhes" name="ortopedicoDetalhes" rows="4"></textarea>
+            </div>
+
+            <div class="pergunta">
+                <p>Está utilizando ácidos?</p>
+                <label><input type="radio" name="acidos" value="sim"
+                        onchange="document.getElementById('acidos-info').style.display = 'block';"> Sim</label>
+                <label><input type="radio" name="acidos" value="nao"
+                        onchange="document.getElementById('acidos-info').style.display = 'none';"> Não</label>
+            </div>
+            <div id="acidos-info" class="info" style="display: none;">
+                <label for="acidosDetalhes">Por favor, detalhe:</label>
+                <textarea id="acidosDetalhes" name="acidosDetalhes" rows="4"></textarea>
+            </div>
+
+            <div class="pergunta">
+                <p>Possui algum outro problema que seja necessário nos informar antes do procedimento?</p>
+                <label><input type="radio" name="outroProblema" value="sim"
+                        onchange="document.getElementById('outroProblema-info').style.display = 'block';"> Sim</label>
+                <label><input type="radio" name="outroProblema" value="nao"
+                        onchange="document.getElementById('outroProblema-info').style.display = 'none';"> Não</label>
+            </div>
+            <div id="outroProblema-info" class="info" style="display: none;">
+                <label for="outroProblemaDetalhes">Por favor, detalhe:</label>
+                <textarea id="outroProblemaDetalhes" name="outroProblemaDetalhes" rows="4"></textarea>
+            </div>
+            
+            <hr>
+
+            <div class="pergunta">
+                <p style="margin-top:20px; font-weight: normal; color:#2c3e50;">
+                    Declaro que as informações acima são verdadeiras, não cabendo ao profissional quaisquer
+                    responsabilidades por informações omitidas nesta avaliação.
+                </p>
+                <label style="margin-top: 10px; display: flex; align-items: center; gap: 8px; color:#555;">
+                    <input type="checkbox" name="declaracao" required>
+                    Estou ciente e concordo com a declaração acima.
+                </label>
+
+                <label for="dataPreenchimento" style="margin-top: 15px;">Data de preenchimento:</label>
+                <input type="date" id="dataPreenchimento" name="dataPreenchimento" required>
+            </div>
+
+            <hr>
+
+            <h3>Informações sobre a Consulta:</h3>
+            <div class="pergunta">
+                <p>Qual modalidade de massagem você deseja?</p>
+                <label><input type="radio" name="modalidade" value="Terapêutica" required> Terapêutica</label>
+                <label><input type="radio" name="modalidade" value="Relaxante"> Relaxante</label>
+                <label><input type="radio" name="modalidade" value="Drenagem Linfática"> Drenagem Linfática</label>
+                <label><input type="radio" name="modalidade" value="Desportiva"> Desportiva</label>
+                <label><input type="radio" name="modalidade" value="Estética"> Estética</label>
+                <label>
+                    <input type="radio" name="modalidade" value="Outra"
+                        onchange="document.getElementById('modalidade-outra').style.display = 'block';">
+                    Outra
+                </label>
+            </div>
+            <div id="modalidade-outra" class="info" style="display: none;">
+                <label for="outraModalidade">Por favor, descreva a modalidade:</label>
+                <textarea id="outraModalidade" name="outraModalidade" rows="3"></textarea>
+            </div>
+
+            <div class="pergunta">
+                <p>Quais manobras você deseja incluir?</p>
+                <label><input type="checkbox" name="manobras" value="Deslizamento Superficial"> Deslizamento
+                    Superficial</label>
+                <label><input type="checkbox" name="manobras" value="Deslizamento Profundo"> Deslizamento
+                    Profundo</label>
+                <label><input type="checkbox" name="manobras" value="Amassamento"> Amassamento</label>
+                <label><input type="checkbox" name="manobras" value="Fricção"> Fricção</label>
+                <label><input type="checkbox" name="manobras" value="Percussão"> Percussão</label>
+                <label><input type="checkbox" name="manobras" value="Drenagem"> Drenagem</label>
+                <label>
+                    <input type="checkbox"
+                        onchange="document.getElementById('manobras-outra').style.display = this.checked ? 'block' : 'none';">
+                    Outra
+                </label>
+            </div>
+            <div id="manobras-outra" class="info" style="display: none;">
+                <label for="outraManobra">Por favor, descreva outra manobra:</label>
+                <textarea id="outraManobra" name="outraManobra" rows="3"></textarea>
+            </div>
+
+            <div class="pergunta">
+                <label for="objetivoPrincipal">Qual é o seu objetivo principal com esta massagem?</label>
+                <textarea id="objetivoPrincipal" name="objetivoPrincipal" rows="4"
+                    placeholder="Exemplo: aliviar dores, reduzir estresse, melhorar circulação..." required></textarea>
+            </div>
+
+            <div class="pergunta">
+                <label for="observacoes">Observações:</label>
+                <textarea id="observacoes" name="observacoes" rows="4"
+                    placeholder="Caso tenha algo que deseje complementar..."></textarea>
+            </div>
+
+            <div class="pergunta">
+                <label for="profissional">Nome do profissional que atendeu:</label>
+                <input type="text" id="profissional" name="profissional" required>
+
+                <label for="dataAtendimento">Data do atendimento:</label>
+                <input type="date" id="dataAtendimento" name="dataAtendimento" required>
+            </div>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+    </div>
+</body>
+</html>

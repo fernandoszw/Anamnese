@@ -1,0 +1,59 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+    background-color: white;
+    padding: 40px 60px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 90%;
+    animation: fadeIn 1.2s ease;
+}
+
+.message-box h1 {
+    color: #2ecc71;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.message-box p {
+    color: #34495e;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* Transição suave */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividade */
+@media (max-width: 500px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    .message-box h1 {
+        font-size: 1.5rem;
+    }
+
+    .message-box p {
+        font-size: 1rem;
+    }
+}
