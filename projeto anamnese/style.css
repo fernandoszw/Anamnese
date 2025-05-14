@@ -6,7 +6,7 @@
 }
 
 body {
-    background: linear-gradient(to right, #eef2f3, #8e9eab);
+    background: linear-gradient(135deg, #f2f6f9, #dbe9f4);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -14,144 +14,154 @@ body {
     padding: 40px 20px;
 }
 
-/* Container principal */
 .container {
+    width: 100%;
+    max-width: 950px;
+    background-color: #ffffffee;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     gap: 40px;
-    width: 100%;
-    max-width: 900px;
-    background-color: #ffffffcc;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-/* Cartões de login/cadastro */
-.card {
-    background-color: white;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.card h2 {
-    margin-bottom: 20px;
-    color: #333;
-}
-
-input[type="email"],
-input[type="password"],
-input[type="text"],
-input[type="tel"],
-input[type="date"],
-textarea {
-    width: 100%;
-    padding: 12px 15px;
-    margin: 10px 0 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-input:focus,
-textarea:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-    outline: none;
-}
-
-button {
-    padding: 12px 25px;
-    background-color: #3498db;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-button:hover {
-    background-color: #2980b9;
-    transform: scale(1.03);
-}
-
-.divider {
-    text-align: center;
-    margin: 20px 0;
-    font-weight: bold;
-    color: #666;
-}
-
-/* Logo */
-#logo-senai {
-    max-width: 150px;
-    margin-bottom: 20px;
-}
-
-/* Erros */
-.error {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-/* Estilo para a Ficha de Anamnese */
 form {
     display: flex;
     flex-direction: column;
 }
 
 h3 {
+    color: #2c3e50;
+    font-size: 1.5rem;
     margin-top: 30px;
     margin-bottom: 10px;
-    color: #2c3e50;
-    font-size: 1.2rem;
+    text-align: center;
+    position: relative;
+}
+
+h3::after {
+    content: "";
+    width: 60px;
+    height: 3px;
+    background: #3498db;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 2px;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
+    font-weight: 600;
     color: #34495e;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccd6dd;
+    border-radius: 10px;
+    background-color: #f8fafd;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    outline: none;
+    background-color: #fff;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    padding: 14px 25px;
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .sexo,
 .pergunta {
-    margin: 10px 0;
+    margin: 20px 0;
 }
 
 .pergunta p {
     font-weight: bold;
     color: #2c3e50;
+    margin-bottom: 10px;
 }
 
 .pergunta label,
 .sexo label {
-    margin-right: 15px;
+    margin-right: 20px;
     color: #555;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
-/* Responsividade */
+hr {
+    border: none;
+    border-top: 2px solid #e0e0e0;
+    margin: 30px 0;
+}
+
+#diabetes-info,
+.info {
+    background-color: #f0f9ff;
+    padding: 20px;
+    border: 1px solid #cce4f7;
+    border-radius: 10px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+#diabetes-info label,
+.info label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#logo-senai {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 20px;
     }
 
-    .card {
-        padding: 20px;
+    button {
+        width: 100%;
     }
-}
-
-hr{
-border: none; 
-border-top: 2px solid #ccc; 
-margin: 20px 0;
-}
-
-h3{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }

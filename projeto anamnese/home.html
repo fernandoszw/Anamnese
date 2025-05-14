@@ -1,36 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de Anamnese - MASSOTERAPIA </title>
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        #diabetes-info {
-            background-color: #e6f7ff;
-            padding: 15px;
-            margin-top: 10px;
-            border: 1px solid #b3e0ff;
-            border-radius: 8px;
-        }
-
-        #diabetes-info label {
-            margin-top: 10px;
-            display: block;
-            font-weight: bold;
-        }
-
-        #diabetes-info select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-    </style>
-
 </head>
+
 <body>
     <div class="container">
         <h3>MASSOTERAPIA - Ficha de Anamnese</h3>
@@ -44,7 +21,7 @@
                 <input type="text" id="nome" name="nome" required>
 
                 <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" name="telefone" required>
+                <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" required>
 
                 <label for="dataNascimento">Data de Nascimento:</label>
                 <input type="date" id="dataNascimento" name="dataNascimento" required>
@@ -113,7 +90,7 @@
                     }
                 </script>
 
-            <hr> 
+                <hr>
 
             </div>
             <h3>QUEIXA PRINCIPAL:</h3>
@@ -121,7 +98,7 @@
                 <textarea id="queixa" name="queixa" rows="4"
                     placeholder="Descreva aqui o motivo pelo qual procurou este serviço..." required></textarea>
             </div>
-            
+
             <hr>
 
             <h3>INFORMAÇÕES PESSOAIS:</h3>
@@ -338,7 +315,7 @@
                 <label for="outroProblemaDetalhes">Por favor, detalhe:</label>
                 <textarea id="outroProblemaDetalhes" name="outroProblemaDetalhes" rows="4"></textarea>
             </div>
-            
+
             <hr>
 
             <div class="pergunta">
@@ -421,5 +398,9 @@
         </form>
 
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script type="module" src="./cadastro.js"></script>
+
 </body>
+
 </html>
